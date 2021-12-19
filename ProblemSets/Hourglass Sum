@@ -1,0 +1,16 @@
+class Solution {
+    int hourglassSum(int[][] arr) {
+        int rows = arr.length;
+        int columns = arr[0].length;
+
+        int maxHourglassSum = Integer.MIN_VALUE;    // this value can be adjusted relative to the constraints
+        
+        for(int i=0; i<rows-2; i++) {   // rows-2 to stop 'index out of bounds' error - there are only 16 hourglass' in the array     
+            for(int j=0; j<columns-2; j++) {    // columns-2 to stop 'index out of bounds' error - there are only 16 hourglass' in the array
+                int currentHourglassSum = arr[i][j] + arr[i][j+1] + arr[i][j+2] + arr[i+1][j+1] + arr[i+2][j] + arr[i+2][j+1] + arr[i+2][j+2];  // iterate through 2D array by taking the row and column indices which correspond to the hourglass shape 
+                maxHourglassSum = Math.max(maxHourglassSum, currentHourglassSum);   // check to see which value is larger, and update maxHourglassSum accordingly: if the currentHourglassSum is larger then maxHourglassSum = currentHourglassSum
+            }
+        }
+        return maxHourglassSum;
+    }
+}
